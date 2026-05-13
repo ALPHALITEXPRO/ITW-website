@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Trip - ExploreIndia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f5ee;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Navbar */
+        #navbar {
+            position: sticky;
+            top: 0;
+            background-color: #0f1c2e;
+            z-index: 999;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 65px;
+        }
+
+        .logo-text {
+            color: #e8b86d;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        #navLinks {
+            display: flex;
+            gap: 5px;
+        }
+
+        #navLinks a {
+            color: #ccc;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        #navLinks a:hover {
+            background-color: rgba(201, 147, 58, 0.2);
+            color: #e8b86d;
+        }
+
+        #hamburger {
+            display: none;
+            font-size: 26px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background-image: linear-gradient(rgba(15, 28, 46, 0.75), rgba(15, 28, 46, 0.75)),
+                              url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-banner h1 {
+            font-size: 40px;
+            color: #e8b86d;
+            margin-bottom: 12px;
+        }
+
+        .hero-banner p {
+            font-size: 16px;
+            color: #ddd;
+            max-width: 560px;
+        }
+
+        /* Booking Form Section */
+        .booking-section {
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #0f1c2e;
+            font-size: 26px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 14px;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: #f9fbfd;
+            font-family: Arial, sans-serif;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #c9933a;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        /* Two column row */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Total Price Box */
+        .total-box {
+            background-color: #eafaf1;
+            border: 1px solid #2ecc71;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: right;
+            margin-top: 6px;
+            margin-bottom: 20px;
+        }
+
+        .total-box h3 {
+            color: #27ae60;
+            font-size: 22px;
+        }
+
+        .total-box p {
+            color: #777;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            background-color: #c9933a;
+            color: white;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #a97528;
+        }
+
+        /* Footer */
+        #footer {
+            background-color: #162236;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        #footer .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 24px 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-grid p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 13px;
+            margin-top: 10px;
+            line-height: 1.7;
+        }
+
+        .footer-grid h4 {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .footer-grid ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-grid ul li a {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 13px;
+        }
+
+        .footer-grid ul li a:hover {
+            color: #e8b86d;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .social-icons a {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-icons a:hover {
+            background-color: #c9933a;
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #navLinks {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                right: 0;
+                background-color: #0f1c2e;
+                padding: 16px;
+                gap: 4px;
+            }
+
+            #navLinks.open {
+                display: flex;
+            }
+
+            #hamburger {
+                display: block;
+            }
+
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-banner h1 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo-text">ExploreIndia</a>
+        <div id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#services">Services</a>
+            <a href="trip-plans.html">Trip Plans</a>
+            <a href="index.html#login">Login</a>
+            <a href="index.html#register">Register</a>
+            <a href="index.html#feedback">Feedback</a>
+        </div>
+        <div id="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </div>
+</div>
+
+<!-- Hero Banner -->
+<div class="hero-banner">
+    <h1>Book Your Trip</h1>
+    <p>Secure your spot for an unforgettable adventure across India's most amazing destinations.</p>
+</div>
+
+<!-- Booking Form -->
+<div class="booking-section">
+    <div class="form-container">
+        <h2>Booking Details</h2>
+
+        <form id="bookingForm">
+
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="fullName" placeholder="Enter your full name">
+            </div>
+
+            <div class="two-col">
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="emailId" placeholder="example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phoneNo" placeholder="9876543210">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Select Destination *</label>
+                <select id="destination">
+                    <option value="" data-price="0" disabled selected>-- Choose a destination --</option>
+                    <optgroup label="Mountains">
+                        <option value="leh-ladakh" data-price="35000">Leh Ladakh (Rs. 35,000 per person)</option>
+                        <option value="kashmir" data-price="28500">Kashmir Valley (Rs. 28,500 per person)</option>
+                        <option value="spiti" data-price="32000">Spiti Valley (Rs. 32,000 per person)</option>
+                    </optgroup>
+                    <optgroup label="Beaches">
+                        <option value="andaman" data-price="45000">Andaman Islands (Rs. 45,000 per person)</option>
+                        <option value="goa" data-price="18000">Goa (Rs. 18,000 per person)</option>
+                        <option value="gokarna" data-price="15000">Gokarna (Rs. 15,000 per person)</option>
+                    </optgroup>
+                    <optgroup label="Cities">
+                        <option value="jaipur" data-price="22000">Jaipur (Rs. 22,000 per person)</option>
+                        <option value="mumbai" data-price="25000">Mumbai (Rs. 25,000 per person)</option>
+                        <option value="varanasi" data-price="16000">Varanasi (Rs. 16,000 per person)</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Travel Start Date *</label>
+                <input type="date" id="travelDate">
+            </div>
+
+            <div class="two-col">
+                <div class="form-group">
+                    <label>Number of Adults (Age 12+)</label>
+                    <input type="number" id="adults" min="0" value="0">
+                </div>
+                <div class="form-group">
+                    <label>Number of Children (Under 12)</label>
+                    <input type="number" id="children" min="0" value="0">
+                </div>
+            </div>
+
+            <div class="two-col">
+                <div class="form-group">
+                    <label>Total Males</label>
+                    <input type="number" id="males" min="0" value="0">
+                </div>
+                <div class="form-group">
+                    <label>Total Females</label>
+                    <input type="number" id="females" min="0" value="0">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Special Requests</label>
+                <textarea id="requests" placeholder="Any special requirements like food, room type, etc..."></textarea>
+            </div>
+
+            <!-- Total Price Box -->
+            <div class="total-box">
+                <h3 id="displayTotal">Total: Rs. 0</h3>
+                <p>Taxes included. Price calculated based on number of adults and children.</p>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="handleBooking()">Proceed to Payment</button>
+
+        </form>
+    </div>
+</div>
+
+<!-- Footer -->
+<div id="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+
+            <div>
+                <a href="index.html" class="logo-text">ExploreIndia</a>
+                <p>Your trusted guide to discovering the beauty and culture of Incredible India.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="trip-plans.html">Trip Plans</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#login">Login</a></li>
+                    <li><a href="index.html#register">Register</a></li>
+                    <li><a href="index.html#feedback">Feedback</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="#">info@exploreindia.in</a></li>
+                    <li><a href="#">+91 1800 XXX XXXX</a></li>
+                    <li><a href="#">New Delhi, India</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 ExploreIndia. Designed for ITW Lab.</p>
+            <p>Made with ❤️ in India</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Toggle mobile nav menu
+    function toggleMenu() {
+        var nav = document.getElementById("navLinks");
+        if (nav.classList.contains("open")) {
+            nav.classList.remove("open");
+        } else {
+            nav.classList.add("open");
+        }
+    }
+
+    // Close nav when a link is clicked
+    var links = document.querySelectorAll("#navLinks a");
+    for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener("click", function() {
+            document.getElementById("navLinks").classList.remove("open");
+        });
+    }
+
+    // Calculate total price
+    function calculateTotal() {
+        var destinationSelect = document.getElementById("destination");
+        var adults = parseInt(document.getElementById("adults").value) || 0;
+        var children = parseInt(document.getElementById("children").value) || 0;
+
+        var selectedOption = destinationSelect.options[destinationSelect.selectedIndex];
+        var pricePerPerson = parseInt(selectedOption.getAttribute("data-price")) || 0;
+
+        var totalPeople = adults + children;
+        var finalTotal = totalPeople * pricePerPerson;
+
+        var totalDisplay = document.getElementById("displayTotal");
+
+        if (finalTotal > 0) {
+            totalDisplay.textContent = "Total: Rs. " + finalTotal.toLocaleString("en-IN");
+        } else {
+            totalDisplay.textContent = "Total: Rs. 0";
+        }
+    }
+
+    // Attach events to recalculate price
+    document.getElementById("destination").addEventListener("change", calculateTotal);
+    document.getElementById("adults").addEventListener("input", calculateTotal);
+    document.getElementById("children").addEventListener("input", calculateTotal);
+
+    // Handle booking form submit
+    function handleBooking() {
+        var name = document.getElementById("fullName").value.trim();
+        var email = document.getElementById("emailId").value.trim();
+        var phone = document.getElementById("phoneNo").value.trim();
+        var destination = document.getElementById("destination").value;
+        var date = document.getElementById("travelDate").value;
+
+        // Basic validation
+        if (name === "") {
+            alert("Please enter your full name.");
+            return;
+        }
+
+        if (email === "" || email.indexOf("@") === -1) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        if (phone === "" || phone.length < 10) {
+            alert("Please enter a valid phone number.");
+            return;
+        }
+
+        if (destination === "") {
+            alert("Please select a destination.");
+            return;
+        }
+
+        if (date === "") {
+            alert("Please select a travel date.");
+            return;
+        }
+
+        // Confirm and submit
+        var confirmMsg = "Do you want to confirm your booking and proceed to payment?";
+        if (confirm(confirmMsg)) {
+            alert("Booking confirmed! Payment successful. Thank you for choosing ExploreIndia!");
+            document.getElementById("bookingForm").reset();
+            document.getElementById("displayTotal").textContent = "Total: Rs. 0";
+        }
+    }
+</script>
+
+</body>
+</html>

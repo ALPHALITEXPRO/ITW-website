@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExploreIndia - Travel Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div id="navbar">
+    <div class="nav-container">
+        <a href="#home" class="logo-text">ExploreIndia</a>
+        <div id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="trip-plans.html">Trip Plans</a>
+            <a href="Book_now.html">Book Now</a>
+            <a href="#login">Login</a>
+            <a href="#register">Register</a>
+            <a href="#feedback">Feedback</a>
+        </div>
+        <div id="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </div>
+</div>
+
+<!-- Home Section -->
+<div id="home">
+    <div class="hero-box">
+        <h1>Welcome to ExploreIndia</h1>
+        <p>Discover the beauty of Incredible India — from mountains to beaches!</p>
+        <a href="#services" class="btn-main">Explore Now</a>
+        <a href="Book_now.html" class="btn-second">Book a Trip</a>
+    </div>
+    <div class="hero-numbers">
+        <div class="stat-box">
+            <strong>500+</strong>
+            <span>Destinations</span>
+        </div>
+        <div class="stat-box">
+            <strong>1.2L+</strong>
+            <span>Travellers</span>
+        </div>
+        <div class="stat-box">
+            <strong>28</strong>
+            <span>States</span>
+        </div>
+        <div class="stat-box">
+            <strong>4.9 &#9733;</strong>
+            <span>Rating</span>
+        </div>
+    </div>
+</div>
+
+<!-- About Section -->
+<div id="about">
+    <div class="section-container">
+        <div class="about-left">
+            <img src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=800&q=80" alt="Taj Mahal" class="about-img">
+        </div>
+        <div class="about-right">
+            <p class="small-label">About Us</p>
+            <h2>Travel Smarter. Explore Deeper.</h2>
+            <p>ExploreIndia is a website that helps travelers find information about places in India. We give free travel guides, itineraries, and tips for every kind of traveler.</p>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <div>
+                    <h4>Who Is It For?</h4>
+                    <p>First-time visitors, families, students, and backpackers.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+                <div>
+                    <h4>Our Purpose</h4>
+                    <p>To give free and accurate travel information for every budget.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                <div>
+                    <h4>Why Use ExploreIndia?</h4>
+                    <p>Easy itineraries, traveler reviews, and local tips all in one place.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Services Section -->
+<div id="services">
+    <div class="section-container">
+        <div style="text-align:center; margin-bottom:40px;">
+            <p class="small-label">Our Services</p>
+            <h2>Everything You Need to Plan Your Trip</h2>
+            <p style="color:#777; margin-top:10px;">We have guides, planners, food tips, and more!</p>
+        </div>
+
+        <div class="cards-grid">
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=70" alt="Guides">
+                <div class="card-body">
+                    <h3><i class="fas fa-map-marked-alt"></i> Destination Guides</h3>
+                    <p>Detailed guides for 500+ places in India including hills, beaches, and heritage sites.</p>
+                    <a href="trip-plans.html#guides" style="color:#1a7a6e; font-size:13px; font-weight:bold; margin-top:10px; display:inline-block;">Explore Guides &rarr;</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=600&q=70" alt="Planner">
+                <div class="card-body">
+                    <h3><i class="fas fa-route"></i> Trip Planner</h3>
+                    <p>Make your own day-by-day travel plan based on your budget and time.</p>
+                    <a href="trip-plans.html#itinerary" style="color:#1a7a6e; font-size:13px; font-weight:bold; margin-top:10px; display:inline-block;">Plan Now &rarr;</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=600&q=70" alt="Festivals">
+                <div class="card-body">
+                    <h3><i class="fas fa-calendar-alt"></i> Festivals & Events</h3>
+                    <p>Know about all major Indian festivals like Diwali, Holi, Pushkar Fair and more.</p>
+                    <a href="trip-plans.html#festivals" style="color:#1a7a6e; font-size:13px; font-weight:bold; margin-top:10px; display:inline-block;">View Events &rarr;</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=70" alt="Food">
+                <div class="card-body">
+                    <h3><i class="fas fa-utensils"></i> Food Guide</h3>
+                    <p>Find the best local foods and restaurants at every destination.</p>
+                    <a href="trip-plans.html#food" style="color:#1a7a6e; font-size:13px; font-weight:bold; margin-top:10px; display:inline-block;">Taste India &rarr;</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=70" alt="Stay">
+                <div class="card-body">
+                    <h3><i class="fas fa-hotel"></i> Hotels & Stays</h3>
+                    <p>Budget hotels, heritage havelis, and hostels across India.</p>
+                    <a href="trip-plans.html#stays" style="color:#1a7a6e; font-size:13px; font-weight:bold; margin-top:10px; display:inline-block;">Find Stays &rarr;</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=70" alt="Transport">
+                <div class="card-body">
+                    <h3><i class="fas fa-bus"></i> Transport Info</h3>
+                    <p>Trains, buses, flights — we have transport tips for every city.</p>
+                    <a href="trip-plans.html#safety" style="color:#1a7a6e; font-size:13px; font-weight:bold; margin-top:10px; display:inline-block;">Safety Hub &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Login Section -->
+<div id="login">
+    <div class="section-container">
+        <div class="login-layout">
+            <div class="login-info">
+                <h2>Login to Your Account</h2>
+                <p>Sign in to access your saved trips and personalized travel plans.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> Save your favorite places</li>
+                    <li><i class="fas fa-check"></i> Plan custom itineraries</li>
+                    <li><i class="fas fa-check"></i> Get travel alerts</li>
+                </ul>
+            </div>
+
+            <div class="form-card">
+                <h3>Sign In</h3>
+                <p>Don't have an account? <a href="#register">Register here</a></p>
+                <br>
+                <form id="loginForm">
+                    <div class="form-group" id="lg-email-grp">
+                        <label>Email Address *</label>
+                        <input type="email" id="lgEmail" placeholder="you@example.com">
+                        <span class="error-msg">Please enter a valid email.</span>
+                    </div>
+
+                    <div class="form-group" id="lg-pw-grp">
+                        <label>Password *</label>
+                        <div style="position:relative;">
+                            <input type="password" id="lgPw" placeholder="Enter password">
+                            <span id="lgPwToggle" class="pw-eye" onclick="togglePw('lgPw', 'lgPwToggle')">&#128065;</span>
+                        </div>
+                        <span class="error-msg">Password must be at least 6 characters.</span>
+                    </div>
+
+                    <button type="submit" class="btn-main" style="width:100%; margin-top:10px;">Login</button>
+                </form>
+                <p style="text-align:center; margin-top:12px; font-size:13px;"><a href="#">Forgot password?</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Register Section -->
+<div id="register">
+    <div class="section-container">
+        <div class="reg-card">
+            <h3 style="text-align:center;">Create Your Account</h3>
+            <p style="text-align:center; color:#777; margin-bottom:30px;">Join thousands of travelers exploring India with us!</p>
+
+            <form id="registerForm">
+                <div class="two-col">
+                    <div class="form-group" id="rg-fn-grp">
+                        <label>First Name *</label>
+                        <input type="text" id="rgFN" placeholder="Ravi">
+                        <span class="error-msg">First name is required.</span>
+                    </div>
+                    <div class="form-group" id="rg-ln-grp">
+                        <label>Last Name *</label>
+                        <input type="text" id="rgLN" placeholder="Sharma">
+                        <span class="error-msg">Last name is required.</span>
+                    </div>
+                </div>
+
+                <div class="form-group" id="rg-email-grp">
+                    <label>Email Address *</label>
+                    <input type="email" id="rgEmail" placeholder="ravi@example.com">
+                    <span class="error-msg">Please enter a valid email.</span>
+                </div>
+
+                <div class="form-group" id="rg-phone-grp">
+                    <label>Mobile Number *</label>
+                    <input type="tel" id="rgPhone" placeholder="9876543210">
+                    <span class="error-msg">Please enter a valid 10-digit number.</span>
+                </div>
+
+                <div class="two-col">
+                    <div class="form-group" id="rg-pw-grp">
+                        <label>Password *</label>
+                        <div style="position:relative;">
+                            <input type="password" id="rgPw" placeholder="Create password">
+                            <span id="rgPwToggle" class="pw-eye" onclick="togglePw('rgPw', 'rgPwToggle')">&#128065;</span>
+                        </div>
+                        <span class="error-msg">Min 8 characters with a number.</span>
+                    </div>
+                    <div class="form-group" id="rg-cpw-grp">
+                        <label>Confirm Password *</label>
+                        <input type="password" id="rgCPw" placeholder="Repeat password">
+                        <span class="error-msg">Passwords don't match.</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Travel Interest</label>
+                    <select id="rgInterest">
+                        <option value="">-- Select --</option>
+                        <option>Adventure & Trekking</option>
+                        <option>Heritage & Culture</option>
+                        <option>Beach & Coastal</option>
+                        <option>Wildlife & Nature</option>
+                        <option>Pilgrimage & Spiritual</option>
+                        <option>Food & Culinary</option>
+                        <option>Budget Backpacking</option>
+                        <option>Luxury Travel</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-teal" style="width:100%; margin-top:10px;">Create Account</button>
+            </form>
+            <p style="text-align:center; margin-top:14px; font-size:13px;">Already a member? <a href="#login">Sign In</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Feedback Section -->
+<div id="feedback">
+    <div class="section-container">
+        <div style="text-align:center; margin-bottom:40px;">
+            <p class="small-label" style="color:#e8b86d;">Feedback</p>
+            <h2 style="color:white;">Share Your Experience</h2>
+            <p style="color:#aaa;">Your thoughts help us make the website better for everyone.</p>
+        </div>
+
+        <div class="feedback-layout">
+
+            <div class="feedback-form-card">
+                <form id="feedbackForm">
+
+                    <div class="two-col">
+                        <div class="form-group" id="fb-name-grp">
+                            <label style="color:#ddd;">Your Name *</label>
+                            <input type="text" id="fbName" placeholder="Priya Patel">
+                            <span class="error-msg">Name is required.</span>
+                        </div>
+                        <div class="form-group" id="fb-email-grp">
+                            <label style="color:#ddd;">Email Address *</label>
+                            <input type="email" id="fbEmail" placeholder="priya@email.com">
+                            <span class="error-msg">Please enter a valid email.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="color:#ddd;">Destination Visited</label>
+                        <input type="text" id="fbDest" placeholder="e.g. Jaipur, Rajasthan">
+                    </div>
+
+                    <div class="form-group">
+                        <label style="color:#ddd;">Rate Your Experience</label>
+                        <div class="star-rating" id="starRating">
+                            <input type="radio" name="rating" id="s5" value="5"><label for="s5">&#9733;</label>
+                            <input type="radio" name="rating" id="s4" value="4"><label for="s4">&#9733;</label>
+                            <input type="radio" name="rating" id="s3" value="3"><label for="s3">&#9733;</label>
+                            <input type="radio" name="rating" id="s2" value="2"><label for="s2">&#9733;</label>
+                            <input type="radio" name="rating" id="s1" value="1"><label for="s1">&#9733;</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="fb-msg-grp">
+                        <label style="color:#ddd;">Your Feedback *</label>
+                        <textarea id="fbMsg" placeholder="Tell us about your trip experience..."></textarea>
+                        <span class="error-msg">Please write at least 20 characters.</span>
+                    </div>
+
+                    <button type="submit" class="btn-main" style="width:100%;">Submit Feedback</button>
+                </form>
+            </div>
+
+            <div class="testimonials-side">
+                <div class="review-card">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"ExploreIndia completely changed how I plan my trips. The guides are very detailed and helpful!"</p>
+                    <div class="reviewer">
+                        <div class="avatar-circle">A</div>
+                        <div>
+                            <strong>Arjun Mehta</strong>
+                            <span>Mumbai, Maharashtra</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p>"Found a hidden village near Coorg thanks to ExploreIndia. The food guide was spot on!"</p>
+                    <div class="reviewer">
+                        <div class="avatar-circle">S</div>
+                        <div>
+                            <strong>Sneha Reddy</strong>
+                            <span>Hyderabad, Telangana</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                    <p>"As a foreign visitor, India felt a bit scary at first but ExploreIndia made my trip very smooth."</p>
+                    <div class="reviewer">
+                        <div class="avatar-circle">L</div>
+                        <div>
+                            <strong>Laura Schmidt</strong>
+                            <span>Berlin, Germany</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div id="footer">
+    <div class="section-container">
+        <div class="footer-grid">
+            <div>
+                <h3 class="logo-text">ExploreIndia</h3>
+                <p>Your trusted guide to discovering the beauty and culture of Incredible India.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="trip-plans.html">Trip Plans</a></li>
+                    <li><a href="Book_now.html">Book Now</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#login">Login</a></li>
+                    <li><a href="#register">Register</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="#">info@exploreindia.in</a></li>
+                    <li><a href="#">+91 1800 XXX XXXX</a></li>
+                    <li><a href="#">New Delhi, India</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 ExploreIndia. Designed for ITW Lab.</p>
+            <p>Made with ❤️ in India</p>
+        </div>
+    </div>
+</div>
+
+<!-- Toast message box -->
+<div id="toast"></div>
+
+<!-- Back to top button -->
+<button id="backTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">&#8679;</button>
+
+<script src="script.js"></script>
+</body>
+</html>
