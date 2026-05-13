@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Plans - ExploreIndia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f5ee;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Navbar */
+        #navbar {
+            position: sticky;
+            top: 0;
+            background-color: #0f1c2e;
+            z-index: 999;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 65px;
+        }
+
+        .logo-text {
+            color: #e8b86d;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        #navLinks {
+            display: flex;
+            gap: 5px;
+        }
+
+        #navLinks a {
+            color: #ccc;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        #navLinks a:hover {
+            background-color: rgba(201, 147, 58, 0.2);
+            color: #e8b86d;
+        }
+
+        #hamburger {
+            display: none;
+            font-size: 26px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Page Title */
+        .page-title {
+            background-color: #0f1c2e;
+            color: white;
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .page-title h1 {
+            font-size: 34px;
+        }
+
+        .page-title h1 span {
+            color: #e8b86d;
+        }
+
+        .page-title p {
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        /* Tab Buttons */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 28px 20px;
+            background-color: white;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: 2px solid #c9933a;
+            border-radius: 30px;
+            background-color: transparent;
+            color: #0f1c2e;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        .tab-btn:hover {
+            background-color: #c9933a;
+            color: white;
+        }
+
+        .tab-btn.active {
+            background-color: #c9933a;
+            color: white;
+        }
+
+        /* Plan Sections */
+        .plan {
+            display: none;
+            padding: 50px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .plan.active {
+            display: block;
+        }
+
+        /* Plan Hero - image + text */
+        .plan-hero {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .plan-hero img {
+            width: 45%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .plan-hero .info {
+            flex: 1;
+        }
+
+        .plan-hero .info .small-label {
+            color: #c9933a;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .plan-hero .info h2 {
+            font-size: 28px;
+            color: #0f1c2e;
+            margin-bottom: 12px;
+        }
+
+        .plan-hero .info p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .plan-hero .info a {
+            display: inline-block;
+            background-color: #c9933a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .plan-hero .info a:hover {
+            background-color: #a97528;
+        }
+
+        /* Cards Section */
+        .cards-title {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .cards-title h3 {
+            font-size: 22px;
+            color: #0f1c2e;
+        }
+
+        .cards-title p {
+            font-size: 13px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            transition: 0.3s;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        .card-body {
+            padding: 18px;
+        }
+
+        .card-body h4 {
+            font-size: 16px;
+            color: #0f1c2e;
+            margin-bottom: 8px;
+        }
+
+        .card-body p {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .card-body a {
+            color: #1a7a6e;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .card-body a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        #footer {
+            background-color: #162236;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            margin-top: 60px;
+        }
+
+        #footer .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 24px 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-grid p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 13px;
+            margin-top: 10px;
+            line-height: 1.7;
+        }
+
+        .footer-grid h4 {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .footer-grid ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-grid ul li a {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 13px;
+        }
+
+        .footer-grid ul li a:hover {
+            color: #e8b86d;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .social-icons a {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-icons a:hover {
+            background-color: #c9933a;
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #navLinks {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                right: 0;
+                background-color: #0f1c2e;
+                padding: 16px;
+                gap: 4px;
+            }
+
+            #navLinks.open {
+                display: flex;
+            }
+
+            #hamburger {
+                display: block;
+            }
+
+            .plan-hero {
+                flex-direction: column;
+            }
+
+            .plan-hero img {
+                width: 100%;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo-text">ExploreIndia</a>
+        <div id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#services">Services</a>
+            <a href="index.html#login">Login</a>
+            <a href="index.html#register">Register</a>
+            <a href="index.html#feedback">Feedback</a>
+        </div>
+        <div id="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </div>
+</div>
+
+<!-- Page Title -->
+<div class="page-title">
+    <h1>Our <span>Trip Plans</span></h1>
+    <p>Choose from 6 different travel plans for your India journey</p>
+</div>
+
+<!-- Tab Buttons -->
+<div class="tabs">
+    <button class="tab-btn active" onclick="showPlan('guides', this)">
+        <i class="fas fa-map-marked-alt"></i> Destination Guides
+    </button>
+    <button class="tab-btn" onclick="showPlan('itinerary', this)">
+        <i class="fas fa-route"></i> Itinerary Planner
+    </button>
+    <button class="tab-btn" onclick="showPlan('festivals', this)">
+        <i class="fas fa-calendar-alt"></i> Festivals and Events
+    </button>
+    <button class="tab-btn" onclick="showPlan('food', this)">
+        <i class="fas fa-utensils"></i> Local Food Guide
+    </button>
+    <button class="tab-btn" onclick="showPlan('stays', this)">
+        <i class="fas fa-hotel"></i> Stay Recommendations
+    </button>
+    <button class="tab-btn" onclick="showPlan('safety', this)">
+        <i class="fas fa-shield-alt"></i> Safety Hub
+    </button>
+</div>
+
+
+<!-- Plan 1: Destination Guides -->
+<div id="guides" class="plan active">
+    <div class="plan-hero">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80" alt="Destination Guides">
+        <div class="info">
+            <p class="small-label">Plan 1</p>
+            <h2>Destination Guides</h2>
+            <p>Expert-written guides for 500+ Indian destinations. Includes maps, tips, and local secrets for every traveler.</p>
+            <a href="Book_now.html"><i class="fas fa-ticket-alt"></i> Book Now</a>
+        </div>
+    </div>
+
+    <div class="cards-title">
+        <h3>Popular Destinations</h3>
+        <p>Handpicked places for every type of traveler</p>
+    </div>
+
+    <div class="cards-grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=500&q=70" alt="Rajasthan">
+            <div class="card-body">
+                <h4>Rajasthan Heritage Trail</h4>
+                <p>Explore the royal forts, colorful bazaars, and deserts of Rajasthan.</p>
+                <a href="Book_now.html">Book Now &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=500&q=70" alt="Kerala">
+            <div class="card-body">
+                <h4>Kerala Backwaters</h4>
+                <p>Peaceful houseboat rides through beautiful Kerala backwaters.</p>
+                <a href="Book_now.html">Book Now &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&q=70" alt="Ladakh">
+            <div class="card-body">
+                <h4>Leh Ladakh Adventure</h4>
+                <p>High-altitude road trips, mountain lakes, and Buddhist monasteries.</p>
+                <a href="Book_now.html">Book Now &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Plan 2: Itinerary Planner -->
+<div id="itinerary" class="plan">
+    <div class="plan-hero">
+        <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=700&q=80" alt="Itinerary Planner">
+        <div class="info">
+            <p class="small-label">Plan 2</p>
+            <h2>Itinerary Planner</h2>
+            <p>Build your own day-by-day travel plan. Choose destinations based on your budget, time, and travel style.</p>
+            <a href="Book_now.html"><i class="fas fa-route"></i> Plan Now</a>
+        </div>
+    </div>
+
+    <div class="cards-title">
+        <h3>Ready-Made Itineraries</h3>
+        <p>Popular travel plans you can use directly</p>
+    </div>
+
+    <div class="cards-grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=500&q=70" alt="Goa">
+            <div class="card-body">
+                <h4>Goa Beach Trip - 5 Days</h4>
+                <p>Beaches, nightlife, seafood, and water sports in beautiful Goa.</p>
+                <a href="Book_now.html">Use This Plan &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=500&q=70" alt="Golden Triangle">
+            <div class="card-body">
+                <h4>Golden Triangle - 10 Days</h4>
+                <p>Delhi, Agra, and Jaipur — India's most famous tourist circuit.</p>
+                <a href="Book_now.html">Use This Plan &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=70" alt="Northeast">
+            <div class="card-body">
+                <h4>Northeast India - 14 Days</h4>
+                <p>Meghalaya, Assam, and Sikkim — India's most unexplored paradise.</p>
+                <a href="Book_now.html">Use This Plan &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Plan 3: Festivals and Events -->
+<div id="festivals" class="plan">
+    <div class="plan-hero">
+        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=700&q=80" alt="Festivals">
+        <div class="info">
+            <p class="small-label">Plan 3</p>
+            <h2>Festivals and Events</h2>
+            <p>India celebrates thousands of festivals every year! Plan your trip around the most colorful and joyful cultural events.</p>
+            <a href="Book_now.html"><i class="fas fa-calendar-alt"></i> View Calendar</a>
+        </div>
+    </div>
+
+    <div class="cards-title">
+        <h3>Must-See Festivals</h3>
+        <p>Plan your visit around these famous celebrations</p>
+    </div>
+
+    <div class="cards-grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1574031564655-5a84ef96b5c8?w=500&q=70" alt="Holi">
+            <div class="card-body">
+                <h4>Holi - Festival of Colors (March)</h4>
+                <p>The world's most vibrant festival celebrated in Vrindavan and Mathura.</p>
+                <a href="Book_now.html">Plan Trip &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1601823984263-ce73e6e47df2?w=500&q=70" alt="Pushkar">
+            <div class="card-body">
+                <h4>Pushkar Camel Fair (November)</h4>
+                <p>Thousands of camels, folk performers, and the sacred Pushkar Lake.</p>
+                <a href="Book_now.html">Plan Trip &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=500&q=70" alt="Diwali">
+            <div class="card-body">
+                <h4>Diwali in Varanasi (Oct/Nov)</h4>
+                <p>Float diyas on the Ganges and celebrate India's biggest festival.</p>
+                <a href="Book_now.html">Plan Trip &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Plan 4: Local Food Guide -->
+<div id="food" class="plan">
+    <div class="plan-hero">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&q=80" alt="Food Guide">
+        <div class="info">
+            <p class="small-label">Plan 4</p>
+            <h2>Local Food Guide</h2>
+            <p>From butter chicken in Punjab to fish curry in Kerala — every state has a unique taste. Our food guide helps you explore 28 cuisines.</p>
+            <a href="Book_now.html"><i class="fas fa-utensils"></i> Explore Food</a>
+        </div>
+    </div>
+
+    <div class="cards-title">
+        <h3>Top Food Trails</h3>
+        <p>Eat your way across Incredible India</p>
+    </div>
+
+    <div class="cards-grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500&q=70" alt="North India Food">
+            <div class="card-body">
+                <h4>Mughal and Punjabi Delights</h4>
+                <p>Biryani, kebabs, and butter chicken — royal flavors of North India.</p>
+                <a href="Book_now.html">Explore &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d6?w=500&q=70" alt="South India Food">
+            <div class="card-body">
+                <h4>South Indian Spice Trail</h4>
+                <p>Dosas, appam, and fish curry — coconut-rich food of the south.</p>
+                <a href="Book_now.html">Explore &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=70" alt="Street Food">
+            <div class="card-body">
+                <h4>India's Best Street Food</h4>
+                <p>Pani puri, vada pav, chole bhature — a city-by-city street food guide.</p>
+                <a href="Book_now.html">Explore &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Plan 5: Stay Recommendations -->
+<div id="stays" class="plan">
+    <div class="plan-hero">
+        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=80" alt="Stay Recommendations">
+        <div class="info">
+            <p class="small-label">Plan 5</p>
+            <h2>Stay Recommendations</h2>
+            <p>Sleep in a palace or save at a hostel — our stays cover every budget. Verified reviews and honest advice only.</p>
+            <a href="Book_now.html"><i class="fas fa-hotel"></i> Find Stays</a>
+        </div>
+    </div>
+
+    <div class="cards-title">
+        <h3>Stay Categories</h3>
+        <p>The right stay for every type of traveler</p>
+    </div>
+
+    <div class="cards-grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=500&q=70" alt="Palace Hotels">
+            <div class="card-body">
+                <h4>Palace and Heritage Hotels</h4>
+                <p>Stay in royal forts and converted palaces — from Rs. 8,000 per night.</p>
+                <a href="Book_now.html">Browse &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=500&q=70" alt="Homestays">
+            <div class="card-body">
+                <h4>Boutique and Homestays</h4>
+                <p>Unique family-run stays with local warmth — Rs. 1,500 to 5,000 per night.</p>
+                <a href="Book_now.html">Browse &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1521783988139-89397d761dce?w=500&q=70" alt="Budget Stays">
+            <div class="card-body">
+                <h4>Hostels and Guesthouses</h4>
+                <p>Clean, safe, and social — perfect for backpackers from Rs. 400 per night.</p>
+                <a href="Book_now.html">Browse &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Plan 6: Safety Hub -->
+<div id="safety" class="plan">
+    <div class="plan-hero">
+        <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=700&q=80" alt="Safety Hub">
+        <div class="info">
+            <p class="small-label">Plan 6</p>
+            <h2>Traveler Safety Hub</h2>
+            <p>For solo travelers, international visitors, and first-timers — our Safety Hub gives emergency contacts, health tips, and travel advice for all 28 states.</p>
+            <a href="Book_now.html"><i class="fas fa-shield-alt"></i> Access Safety Hub</a>
+        </div>
+    </div>
+
+    <div class="cards-title">
+        <h3>Safety Resources</h3>
+        <p>Stay safe and well-prepared wherever you go in India</p>
+    </div>
+
+    <div class="cards-grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=70" alt="Health Guide">
+            <div class="card-body">
+                <h4>Health and Medical Guide</h4>
+                <p>Vaccinations, hospitals, water safety, and food hygiene tips.</p>
+                <a href="Book_now.html">Read Guide &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&q=70" alt="Emergency">
+            <div class="card-body">
+                <h4>Emergency Contacts and SOS</h4>
+                <p>Police, ambulance, and women helplines — state-wise contact list.</p>
+                <a href="Book_now.html">Get Contacts &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=500&q=70" alt="Solo Travel">
+            <div class="card-body">
+                <h4>Solo and Female Traveler Tips</h4>
+                <p>Safe stays, transport options, and cultural tips for solo travelers.</p>
+                <a href="Book_now.html">Read Tips &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div id="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+
+            <div>
+                <a href="index.html" class="logo-text">ExploreIndia</a>
+                <p>Your trusted guide to discovering the beauty and culture of Incredible India.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#login">Login</a></li>
+                    <li><a href="index.html#register">Register</a></li>
+                    <li><a href="index.html#feedback">Feedback</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="#">info@exploreindia.in</a></li>
+                    <li><a href="#">+91 1800 XXX XXXX</a></li>
+                    <li><a href="#">New Delhi, India</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 ExploreIndia. Designed for ITW Lab.</p>
+            <p>Made with ❤️ in India</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Toggle mobile nav menu
+    function toggleMenu() {
+        var nav = document.getElementById("navLinks");
+        if (nav.classList.contains("open")) {
+            nav.classList.remove("open");
+        } else {
+            nav.classList.add("open");
+        }
+    }
+
+    // Close nav when a link is clicked
+    var links = document.querySelectorAll("#navLinks a");
+    for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener("click", function() {
+            document.getElementById("navLinks").classList.remove("open");
+        });
+    }
+
+    // Show a plan tab and hide all others
+    function showPlan(planId, clickedBtn) {
+        // Hide all plans
+        var allPlans = document.querySelectorAll(".plan");
+        for (var i = 0; i < allPlans.length; i++) {
+            allPlans[i].classList.remove("active");
+        }
+
+        // Remove active from all buttons
+        var allBtns = document.querySelectorAll(".tab-btn");
+        for (var j = 0; j < allBtns.length; j++) {
+            allBtns[j].classList.remove("active");
+        }
+
+        // Show selected plan
+        document.getElementById(planId).classList.add("active");
+
+        // Mark button as active
+        if (clickedBtn) {
+            clickedBtn.classList.add("active");
+        }
+    }
+
+    // Check URL hash on page load and open that tab
+    window.addEventListener("DOMContentLoaded", function() {
+        var hash = window.location.hash.replace("#", "");
+        var validPlans = ["guides", "itinerary", "festivals", "food", "stays", "safety"];
+
+        if (hash !== "" && validPlans.indexOf(hash) !== -1) {
+            var allBtns = document.querySelectorAll(".tab-btn");
+            for (var i = 0; i < allBtns.length; i++) {
+                if (allBtns[i].getAttribute("onclick").indexOf("'" + hash + "'") !== -1) {
+                    showPlan(hash, allBtns[i]);
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
